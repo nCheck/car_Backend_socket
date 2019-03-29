@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Request</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  
+    <form>
+        <input type="text" id="id">
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="demand" >
+
+    </div>
+    
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+      $(function () {
+        var socket = io();
+
+        $('form').submit(function(e){
+          e.preventDefault(); // prevents page reloading
+
+          socket.emit('find', { id : $('#id').val() , riderId : socket.id, contactNo : 9762622540, rating : 3 , noOfPass : 3 });
+          return false;
+        });
+
+        socket.on('accept', function(msg){
+          var driverId = msg.driverId;
+          $('#demand').append($('<li>').text(driverId + " has accepted the ride"));
+        });
+
+        
+      });
+    </script>
+
+</html>

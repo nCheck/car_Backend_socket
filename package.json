@@ -1,0 +1,29 @@
+{
+  "name": "BookingServer",
+  "version": "1.0.0",
+  "description": "server side for booking app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test.js"
+  },
+  "author": "Abby",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "express-basic-auth": "^1.1.6",
+    "express-jwt": "^5.3.1",
+    "express-session": "^1.15.6",
+    "imgur": "^0.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.4.19",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.10",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}

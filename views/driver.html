@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Driver 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  
+    <form>
+        <input type="text" id="id">
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="demand" >
+
+    </div>
+    
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+      $(function () {
+        var socket = io();
+        var driverId = null;
+        $('form').submit(function(e){
+          e.preventDefault(); // prevents page reloading
+          driverId = $('#id').val();
+          socket.emit('ready', { id : driverId });
+          return false;
+        });
+
+        socket.on('request', function(msg){
+          
+          console.log("finding");
+
+          var newButton  = `
+          <div class="accept" id="${msg.riderId}">
+            ${msg.id} 
+            <button >
+              Accept
+            </button>
+          </div>
+          `
+          $('#demand').append( newButton );
+        });
+
+        $('#demand').on( 'click' , '.accept' ,  function(e){
+          var id = this.id;
+          console.log(id)
+          socket.emit('sendAcception', { driverId , id , contactNo : 123456789  })
+          console.log("clicked" )
+        })
+
+        
+      });
+    </script>
+
+</html>
