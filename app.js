@@ -1,6 +1,6 @@
 var app = require('express')();
 var http = require('http').Server(app); //Server
-
+const port  = process.env.PORT || 3000;
 var io = require('socket.io')(http);  //Connection Establishing - Driver and 
 const path = require('path');
 const express = require('express')
@@ -104,6 +104,6 @@ app.get('/test', (req , res)=>{
 })
 
 
-http.listen(3000, function(){
+http.listen(port, function(){
   console.log('listening on *:3000');
 });
