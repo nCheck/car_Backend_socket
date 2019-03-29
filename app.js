@@ -8,8 +8,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const errorHandler = require('errorhandler');
-const basicAuth = require('express-basic-auth');
 
 
 
