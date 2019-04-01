@@ -17,6 +17,17 @@ router.route('/verify')
 
 
 
+router.route('/registerDriver')
+        .post( user.registerDriver )
+
+
+
+router.route('/registerStudent')
+        .post( user.registerStudent )
+
+
+
+
 
 
 
