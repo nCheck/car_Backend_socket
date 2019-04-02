@@ -78,6 +78,10 @@ module.exports.verifyUser  = (req , res) =>{
 
                     })
 
+
+                }
+                else{
+                    res.send({ status : true , user : doc })
                 }
             }else{
                 res.send({status : false})
