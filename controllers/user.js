@@ -58,7 +58,27 @@ module.exports.verifyUser  = (req , res) =>{
             if(err || doc == null){
                 res.send({err,status : false})
             }else if ( doc.hash == hash ){
-                res.send({status : true , user : doc})
+
+                if (  ! doc.isStudent ){
+
+                    var profileId = doc.profileId;
+
+                    Driver.findById( profileId,  (err, ddoc) =>{
+
+                        if (err){
+                            res.send({status : false})
+                        }else{
+                            console.log("SENDING ", { status : true ,
+                                user : { name : doc.name , contactNo : doc.contactNo , username : doc.username , 
+                               photoUrl : ddoc.photoUrl , carNumber : ddoc.carNumber } })
+                            res.send({ status : true ,
+                                user : { name : doc.name , contactNo : doc.contactNo , username : doc.username , 
+                               photoUrl : ddoc.photoUrl , carNumber : ddoc.carNumber } })
+                        }
+
+                    })
+
+                }
             }else{
                 res.send({status : false})
             }
